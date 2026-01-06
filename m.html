@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jancedric Galang | Freelance 3D Artist</title>
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/00d2ff/3d-model.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a12;
+            --sidebar-bg: #11111e;
+            --card-bg: #161626;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #00d2ff;
+            --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --nav-hover: rgba(0, 210, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        /* --- CONTENT AREA --- */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 280px;
+            padding: 40px 60px;
+            min-height: 100vh;
+            overflow-y: visible;
+        }
+
+        section { margin-bottom: 80px; }
+        h1 { font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -1px; }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+        }
+
+        .about-box {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            line-height: 1.7;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-box::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-gradient); }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .info-card h3 { 
+            font-size: 0.9rem; 
+            color: var(--accent-blue); 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .skill-tag {
+            background: var(--nav-hover);
+            color: var(--text-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- PROJECT GRID --- */
+        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; flex-wrap: wrap; gap: 15px; }
+        .project-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 30px; 
+            padding-bottom: 50px;
+        }
+
+        .project-card {
+            background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; height: 100%;
+        }
+
+        .img-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; cursor: pointer; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
+        .project-card:hover .project-img { transform: scale(1.05); }
+
+        .project-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-info h4 { font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; color: #fff; }
+        .project-info p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+        
+        .fb-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--accent-gradient); color: white; padding: 12px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: 0.3s;
+        }
+
+        /* SIDEBAR BRAND & NAV */
+        .brand { display: flex; align-items: center; gap: 12px; padding: 0 10px 30px; border-bottom: 1px solid var(--border-color); margin-bottom: 30px; }
+        .brand-logo { width: 35px; height: 35px; background: var(--accent-gradient); border-radius: 8px; display: grid; place-items: center; color: white; font-weight: bold; }
+        .brand-name h2 { font-size: 1.1rem; font-weight: 700; }
+        .brand-name p { font-size: 0.7rem; color: var(--accent-blue); text-transform: uppercase; }
+        .nav-section { margin-bottom: 25px; }
+        .nav-label { font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; padding-left: 10px; font-weight: 700; }
+        .nav-list { list-style: none; }
+        .nav-link { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; border-radius: 10px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { background: var(--nav-hover); color: var(--text-light); }
+        .status-buttons { background: var(--sidebar-bg); padding: 5px; border-radius: 12px; display: flex; gap: 5px; border: 1px solid var(--border-color); }
+        .status-btn { background: transparent; border: none; color: var(--text-muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; }
+        .status-btn.active { background: var(--card-bg); color: var(--accent-blue); }
+
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { max-width: 90%; max-height: 90%; object-fit: contain; border: 2px solid var(--accent-blue); border-radius: 10px; }
+        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .sidebar { width: 80px; }
+            .main-content { margin-left: 80px; padding: 30px; }
+            .brand-name, .nav-label, .nav-link span { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">J</div>
+            <div class="brand-name">
+                <h2>Jancedric</h2>
+                <p>3D Specialist</p>
+            </div>
+        </div>
+        <div class="nav-section">
+            <p class="nav-label">Main Menu</p>
+            <ul class="nav-list">
+                <li><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> <span>About</span></a></li>
+                <li><a href="#works" class="nav-link active"><i class="fa-solid fa-cube"></i> <span>Portfolio</span></a></li>
+            </ul>
+        </div>
+        <div class="nav-section" style="margin-top: auto;">
+             <p class="nav-label">Socials</p>
+             <ul class="nav-list">
+                <li><a href="https://www.facebook.com/jancedric.galang" class="nav-link" target="_blank"><i class="fa-brands fa-facebook"></i> <span>Facebook</span></a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section id="about">
+            <h1>About Me</h1>
+            <div class="about-grid">
+                <div class="about-box">
+                    <p>I am <strong>Jancedric Galang</strong>, a passionate Freelance 3D Artist and CAD Designer with a focus on functional design and technical precision. I bridge the gap between imagination and physical reality through advanced 3D modeling.</p>
+                    
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-gears"></i> What I Do</h3>
+                        <p>I specialize in creating 3D prototypes, mechanical parts, and ergonomic enclosures. My goal is to provide high-quality CAD solutions tailored for 3D printing and manufacturing.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-graduation-cap"></i> Focus Areas</h3>
+                        <p>Industrial Design • Rapid Prototyping • Product Visualization • Mechanical Engineering Support</p>
+                    </div>
+                </div>
+
+                <div class="about-box">
+                    <div class="info-card" style="margin-top: 0;">
+                        <h3><i class="fa-solid fa-microchip"></i> Technical Skills</h3>
+                        <div class="skills-container">
+                            <span class="skill-tag">SolidWorks / Fusion 360</span>
+                            <span class="skill-tag">3D Modeling</span>
+                            <span class="skill-tag">FDM/SLA Printing</span>
+                            <span class="skill-tag">Technical Drawing</span>
+                            <span class="skill-tag">Product Design</span>
+                            <span class="skill-tag">Prototyping</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-location-dot"></i> Availability</h3>
+                        <p>Open for freelance projects and remote collaborations worldwide.</p>
+                    </div>
+
+                    <div class="fb-btn" style="margin-top: 20px; background: rgba(0, 210, 255, 0.1); border: 1px solid var(--accent-blue); color: var(--accent-blue);">
+                        Available for Hire
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="works">
+            <div class="header-flex">
+                <h1>Portfolio</h1>
+                <div class="status-buttons">
+                    <button class="status-btn active" data-filter="all">All Projects</button>
+                    <button class="status-btn" data-filter="finished">Finished</button>
+                </div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_1.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Sci-Fi Drone Hull</h4>
+                        <p>Aerodynamic drone frame design for racing.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_2.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Mechanical Mount</h4>
+                        <p>Industrial grade engine mounting bracket.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_3.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Gaming Shell</h4>
+                        <p>Custom ergonomic mouse shell replacement.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_4.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Articulated Stand</h4>
+                        <p>Multi-axis adjustable tablet display stand.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_5.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Precision Gear System</h4>
+                        <p>High-torque mechanical gear assembly for robotics.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_6.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Automotive Housing</h4>
+                        <p>Custom LED light housing for off-road vehicles.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-status="finished">
+                    <div class="img-container"><img src="image_7.png" class="project-img preview-img"></div>
+                    <div class="project-info">
+                        <h4>Tool Organizer Case</h4>
+                        <p>Modular storage solution for precision instruments.</p>
+                        <a href="https://m.me/jancedric.galang" class="fb-btn">Inquire Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Modal Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("fullImage");
+        const closeBtn = document.querySelector(".close-modal");
+
+        document.querySelectorAll('.preview-img').forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            }
+        });
+
+        closeBtn.onclick = () => modal.style.display = "none";
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+
+        // Filter Logic
+        const statusBtns = document.querySelectorAll('.status-btn');
+        statusBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.status-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.style.display = (filter === 'all' || card.getAttribute('data-status') === filter) ? 'flex' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
